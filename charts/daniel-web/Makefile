@@ -31,17 +31,17 @@ release: clean
 	rm -rf ${NAME}*.tgz%
 
 tag:
-##ifeq ($(OS),Darwin)
-##	sed -i "" -e "s/version:.*/version: $(VERSION)/" Chart.yaml
-##	sed -i "" -e "s/tag:.*/tag: $(VERSION)/" values.yaml
-##else ifeq ($(OS),Linux)
-##	sed -i -e "s/version:.*/version: $(VERSION)/" Chart.yaml
-##	sed -i -e "s|repository:.*|repository: \/11danielma911\/$(NAME)|" values.yaml
-##	sed -i -e "s/tag:.*/tag: $(VERSION)/" values.yaml
-##else
-##	echo "platfrom $(OS) not supported to tag with"
-##	exit -1
-##endif
+ifeq ($(OS),Darwin)
+	sed -i "" -e "s/version:.*/version: $(VERSION)/" Chart.yaml
+	sed -i "" -e "s/tag:.*/tag: $(VERSION)/" values.yaml
+else ifeq ($(OS),Linux)
+	sed -i -e "s/version:.*/version: $(VERSION)/" Chart.yaml
+	sed -i -e "s|repository:.*|repository: \/11danielma911\/$(NAME)|" values.yaml
+	sed -i -e "s/tag:.*/tag: $(VERSION)/" values.yaml
+else
+	echo "platfrom $(OS) not supported to tag with"
+	exit -1
+endif
 	git add --all
 	git commit -m "release $(VERSION)" --allow-empty # if first release then no verion update is performed
 	git tag -fa v$(VERSION) -m "Release version $(VERSION)"

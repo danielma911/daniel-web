@@ -4,6 +4,7 @@
 replicaCount: 1
 image:
   repository: danielma911/daniel-web
+  repository: danielma911/daniel-web
   tag: dev
   pullPolicy: IfNotPresent
 
