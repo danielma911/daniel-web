@@ -3,9 +3,9 @@
 # Declare variables to be passed into your templates.
 replicaCount: 1
 image:
+  repository: index.docker.io/danielma911/daniel-web
   repository: danielma911/daniel-web
-  repository: danielma911/daniel-web
-  tag: dev
+  tag: 0.0.19
   pullPolicy: IfNotPresent
 
 # define environment variables here as a map of key: value
