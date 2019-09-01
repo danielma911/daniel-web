@@ -24,7 +24,7 @@ pipeline {
             checkout scm
             sh "make linux"
             sh "export VERSION=$PREVIEW_VERSION && skaffold build -f skaffold.yaml"
-            sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:$PREVIEW_VERSION"
+            sh "jx step post build --image $ORG/$APP_NAME:$PREVIEW_VERSION"
           }
           dir('/home/jenkins/go/src/github.com/danielma911/daniel-web/charts/preview') {
             sh "make preview"
@@ -52,7 +52,7 @@ pipeline {
             sh "jx step tag --version \$(cat VERSION)"
             sh "make build"
             sh "export VERSION=`cat VERSION` && skaffold build -f skaffold.yaml"
-            sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
+            sh "jx step post build --image $ORG/$APP_NAME:\$(cat VERSION)"
           }
         }
       }
